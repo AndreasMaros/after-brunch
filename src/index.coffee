@@ -9,8 +9,8 @@ module.exports = class AfterBrunch
     @commands = @conf.commands ? []
 
   onCompile: (generatedFiles) ->
-    po = @conf.productionOnly ? false
-    doRun = po ? process.env.NODE_ENV === 'production' : true
+    po = if @conf.productionOnly == true then true else false
+    doRun = if po && !(process.env.NODE_ENV == 'production') then false else true;
     if (doRun)
       for command in @commands
         exec command, (error, stdout, stderr) ->
