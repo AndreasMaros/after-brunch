@@ -1,6 +1,9 @@
 ## after-brunch
 Want to run something on the command line everytime [brunch](http://brunch.io) compiles? Easy.
 
+## This fork
+...allows you to set an additional option to only run the task for production builds.
+
 ## Usage
 Add `"after-brunch": "x.y.z"` to `package.json` of your brunch app.
 Or `npm install after-brunch --save`.
@@ -12,7 +15,10 @@ For example, you might want to use styledocco to create a live styleguide of you
 exports.config =
   …
   plugins:
-    afterBrunch: [
-      'styledocco -n "My Project" css'
-    ]
+    afterBrunch: {
+      productionOnly: true,
+      tasks: [
+        'styledocco -n "My Project" css'
+      ]
+    }
 ```
